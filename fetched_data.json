@@ -1,0 +1,212 @@
+{
+    "1000": {
+        "1": {
+            "eventName": {
+                "stringValue": "NE District URI Event"
+            },
+            "autoClimbed": {
+                "booleanValue": false
+            },
+            "shift1HubActive": {
+                "booleanValue": false
+            },
+            "shift4Defense": {
+                "booleanValue": false
+            },
+            "teamNumber": {
+                "integerValue": "1000"
+            },
+            "scoutingTeam": {
+                "integerValue": "3464"
+            },
+            "shift3Fuel": {
+                "integerValue": "0"
+            },
+            "autoPlayedDefense": {
+                "booleanValue": false
+            },
+            "autoBump": {
+                "booleanValue": false
+            },
+            "shift2Defense": {
+                "booleanValue": false
+            },
+            "shift3Defense": {
+                "booleanValue": false
+            },
+            "notes": {
+                "stringValue": ""
+            },
+            "shift1Fuel": {
+                "integerValue": "0"
+            },
+            "autoUnderTrench": {
+                "booleanValue": false
+            },
+            "endgameAction": {
+                "stringValue": ""
+            },
+            "shift4Fuel": {
+                "integerValue": "0"
+            },
+            "matchNumber": {
+                "integerValue": "1"
+            },
+            "shift4HubActive": {
+                "booleanValue": false
+            },
+            "autoFuel": {
+                "integerValue": "0"
+            },
+            "shift2HubActive": {
+                "booleanValue": false
+            },
+            "shift3HubActive": {
+                "booleanValue": false
+            },
+            "robotError": {
+                "mapValue": {
+                    "fields": {
+                        "Robot part fell off": {
+                            "booleanValue": false
+                        },
+                        "Robot could not get off after climb": {
+                            "booleanValue": false
+                        },
+                        "Robot unresponsive": {
+                            "booleanValue": true
+                        },
+                        "Auto Stop": {
+                            "booleanValue": false
+                        },
+                        "Did not participate": {
+                            "booleanValue": true
+                        },
+                        "Climb Failed": {
+                            "booleanValue": false
+                        },
+                        "Other": {
+                            "booleanValue": false
+                        },
+                        "Intake issues": {
+                            "booleanValue": false
+                        }
+                    }
+                }
+            },
+            "shift1Defense": {
+                "booleanValue": false
+            },
+            "name": {
+                "stringValue": "Dev"
+            },
+            "shift2Fuel": {
+                "integerValue": "0"
+            }
+        },
+        "5": {
+            "shift4HubActive": {
+                "booleanValue": false
+            },
+            "shift1Fuel": {
+                "integerValue": "0"
+            },
+            "shift4Fuel": {
+                "integerValue": "0"
+            },
+            "shift3Defense": {
+                "booleanValue": false
+            },
+            "name": {
+                "stringValue": "Dev"
+            },
+            "shift2HubActive": {
+                "booleanValue": false
+            },
+            "teamNumber": {
+                "integerValue": "1000"
+            },
+            "shift4Defense": {
+                "booleanValue": false
+            },
+            "robotError": {
+                "mapValue": {
+                    "fields": {
+                        "Robot unresponsive": {
+                            "booleanValue": false
+                        },
+                        "Other": {
+                            "booleanValue": false
+                        },
+                        "Did not participate": {
+                            "booleanValue": false
+                        },
+                        "Robot could not get off after climb": {
+                            "booleanValue": false
+                        },
+                        "Auto Stop": {
+                            "booleanValue": false
+                        },
+                        "Climb Failed": {
+                            "booleanValue": true
+                        },
+                        "Robot part fell off": {
+                            "booleanValue": true
+                        },
+                        "Intake issues": {
+                            "booleanValue": false
+                        }
+                    }
+                }
+            },
+            "autoUnderTrench": {
+                "booleanValue": false
+            },
+            "autoClimbed": {
+                "booleanValue": false
+            },
+            "notes": {
+                "stringValue": ""
+            },
+            "eventName": {
+                "stringValue": "NE District URI Event"
+            },
+            "autoPlayedDefense": {
+                "booleanValue": false
+            },
+            "shift1HubActive": {
+                "booleanValue": false
+            },
+            "shift3Fuel": {
+                "integerValue": "0"
+            },
+            "matchNumber": {
+                "integerValue": "5"
+            },
+            "scoutingTeam": {
+                "integerValue": "3464"
+            },
+            "shift2Defense": {
+                "booleanValue": false
+            },
+            "shift2Fuel": {
+                "integerValue": "0"
+            },
+            "shift1Defense": {
+                "booleanValue": false
+            },
+            "endgameAction": {
+                "stringValue": ""
+            },
+            "shift3HubActive": {
+                "booleanValue": false
+            },
+            "autoFuel": {
+                "integerValue": "0"
+            },
+            "autoBump": {
+                "booleanValue": false
+            }
+        }
+    }
+}

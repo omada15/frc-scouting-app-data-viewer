@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bokeh Plot</title>
+    <style>
+      html, body {
+        box-sizing: border-box;
+        display: flow-root;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+<script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.8.2.min.js"></script>
+<script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.8.2.min.js"></script>
+<script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.8.2.min.js"></script>
+<script type="text/javascript">
+Bokeh.set_log_level("info");
+</script>
+  </head>
+  <body>
+    <div id="eff87b94-718f-4317-8f31-c2b49e3f0a32" data-root-id="p1096" style="display: contents;"></div>
+  
+    <script type="application/json" id="f7b47384-4138-4fdc-b48a-26071c3cd682">
+      {"7d9196b5-b5bc-44ac-9777-bbef75f8d317":{"version":"3.8.2","title":"Bokeh Application","config":{"type":"object","name":"DocumentConfig","id":"p1099","attributes":{"notifications":{"type":"object","name":"Notifications","id":"p1100"}}},"roots":[{"type":"object","name":"Column","id":"p1096","attributes":{"children":[{"type":"object","name":"DataTable","id":"p1090","attributes":{"width":3240,"source":{"type":"object","name":"ColumnDataSource","id":"p1006","attributes":{"selected":{"type":"object","name":"Selection","id":"p1007","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1008"},"data":{"type":"map","entries":[["autoBump",[false,false]],["autoClimbed",[false,false]],["autoFuel",[0,0]],["autoPlayedDefense",[false,false]],["autoUnderTrench",[false,false]],["endgameAction",["",""]],["eventName",["NE District URI Event","NE District URI Event"]],["match",["1","5"]],["matchNumber",[1,5]],["name",["Dev","Dev"]],["notes",["",""]],["robotError",["Robot unresponsive, Did not participate","Climb Failed, Robot part fell off"]],["scoutingTeam",[3464,3464]],["shift1Defense",[false,false]],["shift1Fuel",[0,0]],["shift1HubActive",[false,false]],["shift2Defense",[false,false]],["shift2Fuel",[0,0]],["shift2HubActive",[false,false]],["shift3Defense",[false,false]],["shift3Fuel",[0,0]],["shift3HubActive",[false,false]],["shift4Defense",[false,false]],["shift4Fuel",[0,0]],["shift4HubActive",[false,false]],["team",["1000","1000"]],["teamNumber",[1000,1000]]]}}},"view":{"type":"object","name":"CDSView","id":"p1094","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1095"}}},"columns":[{"type":"object","name":"TableColumn","id":"p1009","attributes":{"field":"autoBump","title":"autoBump","formatter":{"type":"object","name":"StringFormatter","id":"p1010"},"editor":{"type":"object","name":"StringEditor","id":"p1011"}}},{"type":"object","name":"TableColumn","id":"p1012","attributes":{"field":"autoClimbed","title":"autoClimbed","formatter":{"type":"object","name":"StringFormatter","id":"p1013"},"editor":{"type":"object","name":"StringEditor","id":"p1014"}}},{"type":"object","name":"TableColumn","id":"p1015","attributes":{"field":"autoFuel","title":"autoFuel","formatter":{"type":"object","name":"StringFormatter","id":"p1016"},"editor":{"type":"object","name":"StringEditor","id":"p1017"}}},{"type":"object","name":"TableColumn","id":"p1018","attributes":{"field":"autoPlayedDefense","title":"autoPlayedDefense","formatter":{"type":"object","name":"StringFormatter","id":"p1019"},"editor":{"type":"object","name":"StringEditor","id":"p1020"}}},{"type":"object","name":"TableColumn","id":"p1021","attributes":{"field":"autoUnderTrench","title":"autoUnderTrench","formatter":{"type":"object","name":"StringFormatter","id":"p1022"},"editor":{"type":"object","name":"StringEditor","id":"p1023"}}},{"type":"object","name":"TableColumn","id":"p1024","attributes":{"field":"endgameAction","title":"endgameAction","formatter":{"type":"object","name":"StringFormatter","id":"p1025"},"editor":{"type":"object","name":"StringEditor","id":"p1026"}}},{"type":"object","name":"TableColumn","id":"p1027","attributes":{"field":"eventName","title":"eventName","formatter":{"type":"object","name":"StringFormatter","id":"p1028"},"editor":{"type":"object","name":"StringEditor","id":"p1029"}}},{"type":"object","name":"TableColumn","id":"p1030","attributes":{"field":"match","title":"match","formatter":{"type":"object","name":"StringFormatter","id":"p1031"},"editor":{"type":"object","name":"StringEditor","id":"p1032"}}},{"type":"object","name":"TableColumn","id":"p1033","attributes":{"field":"matchNumber","title":"matchNumber","formatter":{"type":"object","name":"StringFormatter","id":"p1034"},"editor":{"type":"object","name":"StringEditor","id":"p1035"}}},{"type":"object","name":"TableColumn","id":"p1036","attributes":{"field":"name","title":"name","formatter":{"type":"object","name":"StringFormatter","id":"p1037"},"editor":{"type":"object","name":"StringEditor","id":"p1038"}}},{"type":"object","name":"TableColumn","id":"p1039","attributes":{"field":"notes","title":"notes","formatter":{"type":"object","name":"StringFormatter","id":"p1040"},"editor":{"type":"object","name":"StringEditor","id":"p1041"}}},{"type":"object","name":"TableColumn","id":"p1042","attributes":{"field":"robotError","title":"robotError","formatter":{"type":"object","name":"StringFormatter","id":"p1043"},"editor":{"type":"object","name":"StringEditor","id":"p1044"}}},{"type":"object","name":"TableColumn","id":"p1045","attributes":{"field":"scoutingTeam","title":"scoutingTeam","formatter":{"type":"object","name":"StringFormatter","id":"p1046"},"editor":{"type":"object","name":"StringEditor","id":"p1047"}}},{"type":"object","name":"TableColumn","id":"p1048","attributes":{"field":"shift1Defense","title":"shift1Defense","formatter":{"type":"object","name":"StringFormatter","id":"p1049"},"editor":{"type":"object","name":"StringEditor","id":"p1050"}}},{"type":"object","name":"TableColumn","id":"p1051","attributes":{"field":"shift1Fuel","title":"shift1Fuel","formatter":{"type":"object","name":"StringFormatter","id":"p1052"},"editor":{"type":"object","name":"StringEditor","id":"p1053"}}},{"type":"object","name":"TableColumn","id":"p1054","attributes":{"field":"shift1HubActive","title":"shift1HubActive","formatter":{"type":"object","name":"StringFormatter","id":"p1055"},"editor":{"type":"object","name":"StringEditor","id":"p1056"}}},{"type":"object","name":"TableColumn","id":"p1057","attributes":{"field":"shift2Defense","title":"shift2Defense","formatter":{"type":"object","name":"StringFormatter","id":"p1058"},"editor":{"type":"object","name":"StringEditor","id":"p1059"}}},{"type":"object","name":"TableColumn","id":"p1060","attributes":{"field":"shift2Fuel","title":"shift2Fuel","formatter":{"type":"object","name":"StringFormatter","id":"p1061"},"editor":{"type":"object","name":"StringEditor","id":"p1062"}}},{"type":"object","name":"TableColumn","id":"p1063","attributes":{"field":"shift2HubActive","title":"shift2HubActive","formatter":{"type":"object","name":"StringFormatter","id":"p1064"},"editor":{"type":"object","name":"StringEditor","id":"p1065"}}},{"type":"object","name":"TableColumn","id":"p1066","attributes":{"field":"shift3Defense","title":"shift3Defense","formatter":{"type":"object","name":"StringFormatter","id":"p1067"},"editor":{"type":"object","name":"StringEditor","id":"p1068"}}},{"type":"object","name":"TableColumn","id":"p1069","attributes":{"field":"shift3Fuel","title":"shift3Fuel","formatter":{"type":"object","name":"StringFormatter","id":"p1070"},"editor":{"type":"object","name":"StringEditor","id":"p1071"}}},{"type":"object","name":"TableColumn","id":"p1072","attributes":{"field":"shift3HubActive","title":"shift3HubActive","formatter":{"type":"object","name":"StringFormatter","id":"p1073"},"editor":{"type":"object","name":"StringEditor","id":"p1074"}}},{"type":"object","name":"TableColumn","id":"p1075","attributes":{"field":"shift4Defense","title":"shift4Defense","formatter":{"type":"object","name":"StringFormatter","id":"p1076"},"editor":{"type":"object","name":"StringEditor","id":"p1077"}}},{"type":"object","name":"TableColumn","id":"p1078","attributes":{"field":"shift4Fuel","title":"shift4Fuel","formatter":{"type":"object","name":"StringFormatter","id":"p1079"},"editor":{"type":"object","name":"StringEditor","id":"p1080"}}},{"type":"object","name":"TableColumn","id":"p1081","attributes":{"field":"shift4HubActive","title":"shift4HubActive","formatter":{"type":"object","name":"StringFormatter","id":"p1082"},"editor":{"type":"object","name":"StringEditor","id":"p1083"}}},{"type":"object","name":"TableColumn","id":"p1084","attributes":{"field":"team","title":"team","formatter":{"type":"object","name":"StringFormatter","id":"p1085"},"editor":{"type":"object","name":"StringEditor","id":"p1086"}}},{"type":"object","name":"TableColumn","id":"p1087","attributes":{"field":"teamNumber","title":"teamNumber","formatter":{"type":"object","name":"StringFormatter","id":"p1088"},"editor":{"type":"object","name":"StringEditor","id":"p1089"}}}]}}]}}]}}
+    </script>
+    <script type="text/javascript">
+      (function() {
+        const fn = function() {
+          Bokeh.safely(function() {
+            (function(root) {
+              function embed_document(root) {
+              const docs_json = document.getElementById('f7b47384-4138-4fdc-b48a-26071c3cd682').textContent;
+              const render_items = [{"docid":"7d9196b5-b5bc-44ac-9777-bbef75f8d317","roots":{"p1096":"eff87b94-718f-4317-8f31-c2b49e3f0a32"},"root_ids":["p1096"]}];
+              root.Bokeh.embed.embed_items(docs_json, render_items);
+              }
+              if (root.Bokeh !== undefined) {
+                embed_document(root);
+              } else {
+                let attempts = 0;
+                const timer = setInterval(function(root) {
+                  if (root.Bokeh !== undefined) {
+                    clearInterval(timer);
+                    embed_document(root);
+                  } else {
+                    attempts++;
+                    if (attempts > 100) {
+                      clearInterval(timer);
+                      console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                    }
+                  }
+                }, 10, root)
+              }
+            })(window);
+          });
+        };
+        if (document.readyState != "loading") fn();
+        else document.addEventListener("DOMContentLoaded", fn);
+      })();
+    </script>
+  </body>
+</html>
