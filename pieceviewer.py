@@ -1,150 +1,159 @@
 import json
-from bokeh.io import show
+import fetchfromdb
+from bokeh.io import output_file, show
 from bokeh.models import ColumnDataSource, DataTable, TableColumn, HTMLTemplateFormatter
-from bokeh.layouts import column
+
+fetchfromdb.fetch()
 
 # Configuration
 COLUMN_ORDER = [
-    "eventName",
-    "team",
-    "match",
-    "name",
-    "scoutingTeam",
     "teamNumber",
-    "matchNumber",
-    "autoFuel",
-    "autoUnderTrench",
-    "autoClimbed",
-    "transitionFuel",
-    "shift1HubActive",
-    "shift1Fuel",
-    "shift1Defense",
-    "shift2HubActive",
-    "shift2Fuel",
-    "shift2Defense",
-    "shift3HubActive",
-    "shift3Fuel",
-    "shift3Defense",
-    "shift4HubActive",
-    "shift4Fuel",
-    "shift4Defense",
-    "endgameFuel",
-    "endgameClimbLevel",
-    "crossedBump",
-    "underTrench",
-    "robotError",
-    "notes",
+    "entries",
+    "avgAutoFuel",
+    "avgTransitionFuel",
+    "avgFirstActiveHubFuel",
+    "avgSecondActiveHubFuel",
+    "avgEndgameFuel",
+    "avgTotalFuel",
 ]
 
-NUMERIC_GRADIENT_COLUMNS = [
-    "transitionFuel",
-    "shift1Fuel",
-    "shift2Fuel",
-    "shift3Fuel",
-    "shift4Fuel",
-    "autoFuel",
-    "endgameFuel",
+# List of all variables to receive gradients
+GRADIENT_COLUMNS = [
+    "avgAutoFuel",
+    "avgTransitionFuel",
+    "avgFirstActiveHubFuel",
+    "avgSecondActiveHubFuel",
+    "avgEndgameFuel",
+    "avgTotalFuel",
 ]
 
 
-def load_and_flatten_data(filepath):
+def calculateAverage(lst):
+    return round(sum(lst) / len(lst), 2) if lst else 0
+
+
+def processTeamAverages(filePath):
     try:
-        with open(filepath, "r") as f:
-            full_data = json.load(f)
+        with open(filePath, "r") as f:
+            fetchedData = json.load(f)
 
-        root_data = full_data.get("root", {})
-        print(f"Loaded data for {len(root_data)} teams")
+        teamList = fetchedData.get("team", [])
+        rootData = fetchedData.get("root", {})
+        print(f"Loaded data for {len(rootData)} teams")
 
-        rows = []
-        for teamnum, matches in root_data.items():
-            for match_id, match_fields in matches.items():
-                # Start row with identifiers
-                row = {"team": teamnum, "match": match_id}
+        summaryData = {
+            "teamNumber": [],
+            "entries": [],
+            "avgAutoFuel": [],
+            "avgTransitionFuel": [],
+            "avgFirstActiveHubFuel": [],
+            "avgSecondActiveHubFuel": [],
+            "avgEndgameFuel": [],
+            "avgTotalFuel": [],
+        }
 
-                # Since data is pre-cleaned, we just iterate fields
-                for key, value in match_fields.items():
-                    # Special handling for robotError if it's still a dict of booleans
-                    if key == "robotError" and isinstance(value, dict):
-                        true_errors = [k for k, v in value.items() if v is True]
-                        row[key] = ", ".join(true_errors)
-                    else:
-                        row[key] = value
-                rows.append(row)
-        return rows
+        for team in teamList:
+            teamMatches = rootData.get(str(team), {})
+            matchCount = len(teamMatches)
+
+            tempAuto, tempTransition, tempFirstHub = [], [], []
+            tempSecondHub, tempEndgame, tempTotal = [], [], []
+
+            for matchId, matchData in teamMatches.items():
+                auto = matchData.get("autoFuel", 0)
+                transition = matchData.get("transitionFuel", 0)
+                endgame = matchData.get("endgameFuel", 0)
+
+                firstShift = 1 if matchData.get("shift1HubActive") else 2
+                secondShift = 3 if matchData.get("shift3HubActive") else 4
+
+                firstHub = matchData.get(f"shift{firstShift}Fuel", 0)
+                secondHub = matchData.get(f"shift{secondShift}Fuel", 0)
+
+                total = auto + transition + endgame + firstHub + secondHub
+
+                tempAuto.append(auto)
+                tempTransition.append(transition)
+                tempFirstHub.append(firstHub)
+                tempSecondHub.append(secondHub)
+                tempEndgame.append(endgame)
+                tempTotal.append(total)
+
+            summaryData["teamNumber"].append(team)
+            summaryData["entries"].append(matchCount)
+            summaryData["avgAutoFuel"].append(calculateAverage(tempAuto))
+            summaryData["avgTransitionFuel"].append(calculateAverage(tempTransition))
+            summaryData["avgFirstActiveHubFuel"].append(calculateAverage(tempFirstHub))
+            summaryData["avgSecondActiveHubFuel"].append(
+                calculateAverage(tempSecondHub)
+            )
+            summaryData["avgEndgameFuel"].append(calculateAverage(tempEndgame))
+            summaryData["avgTotalFuel"].append(calculateAverage(tempTotal))
+
+        return summaryData
+
     except Exception as e:
-        print(f"Error loading JSON: {e}")
-        return []
+        print(f"Error: {e}")
+        return None
 
 
-rows = load_and_flatten_data("fetched_data.json")
+# --- Main Execution ---
+processedSummary = processTeamAverages("fetched_data.json")
 
-if rows:
-    # 1. Determine Columns
-    all_keys = set().union(*(row.keys() for row in rows))
-    ordered_cols = [c for c in COLUMN_ORDER if c in all_keys]
-    other_cols = sorted(list(all_keys - set(COLUMN_ORDER)))
-    final_columns = ordered_cols + other_cols
+if processedSummary:
+    output_file("team_averages.html")
 
-    # 2. Build Data Dictionary for Bokeh
-    plot_data = {col: [row.get(col, "") for row in rows] for col in final_columns}
-
-    # 3. Logic for Gradients
-    for col in NUMERIC_GRADIENT_COLUMNS:
-        if col in plot_data:
-            vals = [float(v) if v not in ["", None] else 0 for v in plot_data[col]]
-            max_v = max(vals) if vals and max(vals) > 0 else 1
+    # 1. Apply Gradient Logic
+    for col in GRADIENT_COLUMNS:
+        if col in processedSummary:
+            vals = [float(v) for v in processedSummary[col]]
+            maxV = max(vals) if vals and max(vals) > 0 else 1
 
             colors = []
             for v in vals:
-                ratio = min(max(v / max_v, 0), 1)
-                # Linear interpolation: Light Red (255, 180, 180) to Light Green (180, 255, 180)
+                ratio = min(max(v / maxV, 0), 1)
+                # Red (255, 180, 180) to Green (180, 255, 180)
                 r = int(255 - (75 * ratio))
                 g = int(180 + (75 * ratio))
                 colors.append(f"rgb({r}, {g}, 180)")
-            plot_data[f"{col}_color"] = colors
+            processedSummary[f"{col}Color"] = colors
 
-    # 4. Logic for Booleans
-    for col in final_columns:
-        if col not in NUMERIC_GRADIENT_COLUMNS:
-            colors = []
-            for val in plot_data[col]:
-                if val is True:
-                    colors.append("#d4edda")  # Light Green
-                elif val is False:
-                    colors.append("#f8d7da")  # Light Red
-                else:
-                    colors.append("white")
-            plot_data[f"{col}_color"] = colors
+    source = ColumnDataSource(processedSummary)
 
-    source = ColumnDataSource(plot_data)
+    # 2. Build Columns with Formatters
+    tableColumns = []
+    for col in COLUMN_ORDER:
+        title = col.replace("avg", "Avg ").replace("Fuel", " Fuel")
 
-    # 5. Build Table Columns with Formatters
-    table_columns = []
-    for col in final_columns:
-        formatter = HTMLTemplateFormatter(
-            template=f"""
-            <div style="background-color: <%= {col}_color %>; 
-                        padding: 4px; margin: -4px; height: 100%;">
-                <%= value %>
-            </div>
-        """
-        )
+        # Check if this column needs a gradient
+        if col in GRADIENT_COLUMNS:
+            formatter = HTMLTemplateFormatter(
+                template=f"""
+                <div style="background-color: <%= {col}Color %>; 
+                            padding: 4px; margin: -4px; height: 100%;">
+                    <%= value %>
+                </div>
+            """
+            )
+            tableColumns.append(
+                TableColumn(field=col, title=title, formatter=formatter, width=120)
+            )
+        else:
+            tableColumns.append(TableColumn(field=col, title=title, width=100))
 
-        width = 250 if col in ["notes", "robotError", "eventName"] else 100
-        table_columns.append(
-            TableColumn(field=col, title=col, formatter=formatter, width=width)
-        )
+    # 3. Dynamic Sizing
+    numTeams = len(processedSummary["teamNumber"])
+    dynamicHeight = max(400, min(numTeams * 30 + 50, 800))
+    dynamicWidth = max(1000, len(tableColumns) * 125)
 
-    # 6. Create Layout
-    table = DataTable(
+    dataTable = DataTable(
         source=source,
-        columns=table_columns,
-        width=1400,
-        height=600,
+        columns=tableColumns,
+        width=dynamicWidth,
+        height=dynamicHeight,
+        selectable=True,
         sortable=True,
-        editable=False,
+        index_position=None,
     )
 
-    show(column(table))
-else:
-    print("No data to display.")
+    show(dataTable)

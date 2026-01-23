@@ -1,8 +1,10 @@
 import json
+import fetchfromdb
 from bokeh.io import show
 from bokeh.models import ColumnDataSource, DataTable, TableColumn, HTMLTemplateFormatter
 from bokeh.layouts import column
 
+fetchfromdb.fetch()
 # Configuration (Keys match the JSON data)
 COLUMN_ORDER = [
     "eventName",

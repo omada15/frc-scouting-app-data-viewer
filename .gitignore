@@ -1,3 +1,4 @@
 *.html
 fetched_data.json
 *.log
+__pycache__
