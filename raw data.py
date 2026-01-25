@@ -5,7 +5,6 @@ from bokeh.models import ColumnDataSource, DataTable, TableColumn, HTMLTemplateF
 from bokeh.layouts import column
 
 fetchfromdb.fetch()
-# Configuration (Keys match the JSON data)
 COLUMN_ORDER = [
     "eventName",
     "team",
@@ -60,12 +59,10 @@ def loadAndFlattenData(filePath):
         rows = []
         for teamNum, matches in rootData.items():
             for matchId, matchFields in matches.items():
-                # Start row with identifiers
                 row = {"team": teamNum, "match": matchId}
 
                 # Iterate fields
                 for key, value in matchFields.items():
-                    # Special handling for robotError if it's a dict of booleans
                     if key == "robotError" and isinstance(value, dict):
                         trueErrors = [k for k, v in value.items() if v is True]
                         row[key] = ", ".join(trueErrors)
@@ -81,16 +78,13 @@ def loadAndFlattenData(filePath):
 allRows = loadAndFlattenData("fetched_data.json")
 
 if allRows:
-    # 1. Determine Columns
     allKeys = set().union(*(row.keys() for row in allRows))
     orderedCols = [c for c in COLUMN_ORDER if c in allKeys]
     otherCols = sorted(list(allKeys - set(COLUMN_ORDER)))
     finalColumns = orderedCols + otherCols
 
-    # 2. Build Data Dictionary for Bokeh
     plotData = {col: [row.get(col, "") for row in allRows] for col in finalColumns}
 
-    # 3. Logic for Gradients
     for col in NUMERIC_GRADIENT_COLUMNS:
         if col in plotData:
             vals = [float(v) if v not in ["", None] else 0 for v in plotData[col]]
@@ -102,7 +96,6 @@ if allRows:
                 r = int(255 - (75 * ratio))
                 g = int(180 + (75 * ratio))
                 colors.append(f"rgb({r}, {g}, 180)")
-            # Using camelCase for the color reference key
             plotData[f"{col}Color"] = colors
 
     # 4. Logic for Booleans
@@ -120,10 +113,8 @@ if allRows:
 
     source = ColumnDataSource(plotData)
 
-    # 5. Build Table Columns with Formatters
     tableColumns = []
     for col in finalColumns:
-        # Note: The template now references <%= colColor %>
         formatter = HTMLTemplateFormatter(
             template=f"""
             <div style="background-color: <%= {col}Color %>; 
@@ -138,7 +129,6 @@ if allRows:
             TableColumn(field=col, title=col, formatter=formatter, width=colWidth)
         )
 
-    # 6. Dynamic Sizing
     numRows = len(allRows)
     numCols = len(finalColumns)
 

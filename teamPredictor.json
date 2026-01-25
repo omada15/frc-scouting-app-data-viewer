@@ -1,0 +1,26 @@
+{
+    "redAlliance": {
+        "teams": [
+            9998,
+            9997,
+            9996
+        ],
+        "autoLikely": 104.5,
+        "teleopLikely": 299.2,
+        "totalScore": 404
+    },
+    "blueAlliance": {
+        "teams": [
+            9995,
+            9994,
+            9993
+        ],
+        "autoLikely": 73.5,
+        "teleopLikely": 280.1,
+        "totalScore": 354
+    },
+    "simulationDetails": {
+        "autoWinner": "Red",
+        "note": "Teleop prediction adjusted for Active/Inactive hub schedule."
+    }
+}
