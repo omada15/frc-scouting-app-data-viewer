@@ -2,14 +2,14 @@ import pieceviewer as pv
 import logger
 
 red = [
-    3464,
     9998,
-    3467,
+    9997,
+    9996,
 ]
 blue = [
-    3461,
-    3441,
-    6728
+    9995,
+    9994,
+    9993
 ]
 logger.log(f"Viewing teams: Red {red}, Blue {blue}")
 pv.view(red + blue, True)

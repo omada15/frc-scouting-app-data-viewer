@@ -175,6 +175,5 @@ def view(teams=None, color=False):
 
 
 if __name__ == "__main__":
-    fetchfromdb.fetch()
     # To see the colors, pass True here:
     view(color=False)

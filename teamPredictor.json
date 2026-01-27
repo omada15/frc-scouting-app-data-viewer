@@ -1,26 +1,32 @@
 {
-    "redAlliance": {
-        "teams": [
+    "Red_Alliance": {
+        "Teams": [
             9998,
             9997,
             9996
         ],
-        "autoLikely": 104.5,
-        "teleopLikely": 299.2,
-        "totalScore": 404
+        "Score_Prediction": {
+            "min": 269.5,
+            "likely": 392.2,
+            "max": 495.2
+        },
+        "Win_Chance": "80.7%"
     },
-    "blueAlliance": {
-        "teams": [
+    "Blue_Alliance": {
+        "Teams": [
             9995,
             9994,
             9993
         ],
-        "autoLikely": 73.5,
-        "teleopLikely": 280.1,
-        "totalScore": 354
+        "Score_Prediction": {
+            "min": 235.1,
+            "likely": 344.6,
+            "max": 474.3
+        },
+        "Win_Chance": "19.3%"
     },
-    "simulationDetails": {
-        "autoWinner": "Red",
-        "note": "Teleop prediction adjusted for Active/Inactive hub schedule."
+    "Simulation_Details": {
+        "Auto_Winner": "Red",
+        "Schedule": "Red controls cycle flow."
     }
 }

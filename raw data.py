@@ -4,7 +4,6 @@ from bokeh.io import show
 from bokeh.models import ColumnDataSource, DataTable, TableColumn, HTMLTemplateFormatter
 from bokeh.layouts import column
 
-fetchfromdb.fetch()
 COLUMN_ORDER = [
     "eventName",
     "team",
